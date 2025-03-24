@@ -1,7 +1,7 @@
 {
   "name": "bkl-data-processor",
   "version": "0.1.0",
-  "homepage": "https://shitab14.github.io/bkl-data-processor",
+  "homepage": "https://shitab14.github.io/bkl-data-processor/",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
@@ -18,12 +18,14 @@
     "xlsx": "^0.18.5"
   },
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -b mypage -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
