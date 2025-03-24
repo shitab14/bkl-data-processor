@@ -1,3 +1,8 @@
+npx create-react-app bkl-data-processor
+
+npm install react-router-dom
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

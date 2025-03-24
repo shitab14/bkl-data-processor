@@ -1,0 +1,156 @@
+/* Drag-and-Drop Zone */
+.dropzone {
+  border: 2px dashed #00bcd4;
+  border-radius: 10px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  margin: 20px 0;
+  background-color: #f0f8ff;
+  transition: background-color 0.3s ease;
+}
+
+.dropzone.active {
+  background-color: #e0f7fa;
+}
+
+.dropzone p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+/* Uploaded File Preview */
+.file-preview {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  text-align: left;
+}
+
+.file-preview h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.file-preview p {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Preview Table */
+.preview-table {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.preview-table h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.preview-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid #ddd;
+  font-size: 0.8rem; /* Reduced text size */
+}
+
+.preview-table th,
+.preview-table td {
+  padding: 6px; /* Reduced cell padding */
+  text-align: left;
+  border: 1px solid #ddd;
+  white-space: nowrap; /* Prevent text wrapping */
+}
+
+.preview-table th {
+  background-color: #00bcd4;
+  color: white;
+  font-weight: bold;
+}
+
+.preview-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.preview-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Processing Indicator */
+.processing {
+  font-size: 1.2rem;
+  color: #00bcd4;
+  margin-top: 20px;
+}
+
+/* Download Section */
+.download-section {
+  margin-top: 20px;
+}
+
+.download-button {
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+  background-color: #0097a7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dropzone {
+    padding: 20px;
+  }
+
+  .dropzone p {
+    font-size: 1rem;
+  }
+
+  .file-preview h3 {
+    font-size: 1.3rem;
+  }
+
+  .file-preview p {
+    font-size: 0.9rem;
+  }
+
+  .preview-table table {
+    font-size: 0.7rem; /* Further reduce text size on mobile */
+  }
+
+  .preview-table th,
+  .preview-table td {
+    padding: 4px; /* Further reduce cell padding on mobile */
+  }
+
+  .processing {
+    font-size: 1rem;
+  }
+
+  .download-button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
