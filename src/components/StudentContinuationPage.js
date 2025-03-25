@@ -48,9 +48,12 @@ const StudentContinuationPage = () => {
         const outputBlob = new Blob([outputData], { type: 'application/octet-stream' });
 
         setProcessedFile(outputBlob);
-        setPreviewData(XLSX.utils.sheet_to_json(outputWorkbook.Sheets['Processed Data'], { header: 1 }));
+
+        // Get the processed data (without projections)
+        const sheetData = XLSX.utils.sheet_to_json(outputWorkbook.Sheets['Processed Data'], { header: 1 });
+        setPreviewData(sheetData);
       } catch (error) {
-        setErrorMessage(error.message);
+        setErrorMessage(`Error processing file: ${error.message}`);
       } finally {
         setIsProcessing(false);
       }
@@ -72,21 +75,21 @@ const StudentContinuationPage = () => {
     multiple: false,
   });
 
-  // Function to get cell color based on worksheet count or accuracy
+  // Function to get cell color
   const getCellColor = (value, header) => {
     const worksheetHeaders = ['7A', '6A', '5A', '4A', '3A', '2A', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O'];
 
     // Apply red color for worksheet counts of 4 and above
     if (worksheetHeaders.includes(header) && value >= 4) {
-      return { backgroundColor: '#FFCCCB' }; // Lighter red
+      return { backgroundColor: '#FFCCCB' };
     }
 
     // Apply green color for accuracy over 80%
     if (header === 'Accuracy (%)' && value > 80) {
-      return { backgroundColor: '#90EE90' }; // Green
+      return { backgroundColor: '#90EE90' };
     }
 
-    return {}; // Default color
+    return {}; // Default style
   };
 
   return (
@@ -126,43 +129,46 @@ const StudentContinuationPage = () => {
       {previewData.length > 0 && (
         <div className="preview-table">
           <h3>File Preview:</h3>
-          <table>
-            <thead>
-              <tr>
-                {previewData[0].map((header, index) => (
-                  <th key={index}>{header}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {previewData.slice(1).map((row, rowIndex) => (
-                <tr key={rowIndex}>
-                  {row.map((cell, cellIndex) => (
-                    <td
-                      key={cellIndex}
-                      style={getCellColor(cell, previewData[0][cellIndex])} // Pass header to getCellColor
-                    >
-                      {cell}
-                    </td>
+          <div className="table-container">
+            <table>
+              <thead>
+                <tr>
+                  {previewData[0].map((header, index) => (
+                    <th key={index}>{header}</th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {previewData.slice(1).map((row, rowIndex) => (
+                  <tr key={rowIndex}>
+                    {row.map((cell, cellIndex) => (
+                      <td
+                        key={cellIndex}
+                        style={getCellColor(cell, previewData[0][cellIndex])}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
 
       {/* Processing Indicator */}
       {isProcessing && <p className="processing">Processing file...</p>}
 
-      {/* Download Section */}
+      {/* Floating Download Button */}
       {processedFile && (
-        <div className="download-section">
-          <h3>File Processed Successfully!</h3>
-          <button onClick={handleDownload} className="download-button">
-            Download Processed File
-          </button>
-        </div>
+        <button
+          onClick={handleDownload}
+          className="floating-download-button"
+          title="Download Processed File"
+        >
+          Download
+        </button>
       )}
     </div>
   );

@@ -1,156 +1,200 @@
-/* Drag-and-Drop Zone */
+/* ===== BASE STYLES ===== */
+.app-container {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  font-size: 14px;
+}
+
+.header {
+  color: #00796b;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* ===== DRAG AND DROP ===== */
 .dropzone {
-  border: 2px dashed #00bcd4;
-  border-radius: 10px;
-  padding: 40px;
+  border: 2px dashed #00838f;
+  border-radius: 6px;
+  padding: 20px;
   text-align: center;
   cursor: pointer;
-  margin: 20px 0;
-  background-color: #f0f8ff;
-  transition: background-color 0.3s ease;
+  margin: 15px 0;
+  background-color: #e0f7fa;
+  transition: all 0.2s;
 }
 
 .dropzone.active {
-  background-color: #e0f7fa;
+  background-color: #b2ebf2;
+  border-color: #006064;
 }
 
 .dropzone p {
   margin: 0;
-  font-size: 1.1rem;
-  color: #333;
+  color: #00695c;
+  font-size: 0.9rem;
 }
 
-/* Error Message */
+/* ===== ERROR MESSAGE ===== */
 .error-message {
-  color: red;
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-/* Uploaded File Preview */
-.file-preview {
-  margin-top: 20px;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  background-color: #f9f9f9;
-  text-align: left;
-}
-
-.file-preview h3 {
-  margin-top: 0;
-  font-size: 1.5rem;
-  color: #333;
-}
-
-.file-preview p {
+  color: #c62828;
+  background-color: #ffebee;
+  padding: 8px 12px;
+  border-radius: 4px;
   margin: 10px 0;
-  font-size: 1rem;
-  color: #555;
+  font-size: 0.85rem;
+  border-left: 3px solid #c62828;
 }
 
-/* Preview Table */
-.preview-table {
-  margin-top: 20px;
+/* ===== FILE INFO ===== */
+.file-info {
+  font-size: 0.85rem;
+  color: #455a64;
+  margin: 10px 0;
+  padding: 8px;
+  background-color: #eceff1;
+  border-radius: 4px;
+}
+
+/* ===== TABLE STYLES ===== */
+.table-wrapper {
   overflow-x: auto;
+  margin: 15px 0;
+  border: 1px solid #cfd8dc;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.preview-table h3 {
-  font-size: 1.5rem;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.preview-table table {
+table {
   width: 100%;
   border-collapse: collapse;
-  background-color: white;
-  border: 1px solid #ddd;
-  font-size: 0.8rem; /* Reduced text size */
+  font-size: 0.75rem;
 }
 
-.preview-table th,
-.preview-table td {
-  padding: 6px; /* Reduced cell padding */
-  text-align: left;
-  border: 1px solid #ddd;
-  white-space: nowrap; /* Prevent text wrapping */
-}
-
-.preview-table th {
-  background-color: #00bcd4;
+th {
+  background-color: #00838f;
   color: white;
-  font-weight: bold;
+  padding: 8px 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  font-weight: 500;
+  white-space: nowrap;
 }
 
-.preview-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+td {
+  padding: 6px 8px;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+  white-space: nowrap;
 }
 
-.preview-table tr:hover {
-  background-color: #f1f1f1;
+.compact-cell {
+  padding: 4px 6px;
+  font-size: 0.7rem;
 }
 
-/* Processing Indicator */
+tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+/* ===== PROCESSING INDICATOR ===== */
 .processing {
-  font-size: 1.2rem;
-  color: #00bcd4;
-  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 15px 0;
+  color: #00838f;
+  font-size: 0.85rem;
 }
 
-/* Download Section */
-.download-section {
-  margin-top: 20px;
+.spinner {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  border: 2px solid rgba(0, 131, 143, 0.3);
+  border-radius: 50%;
+  border-top-color: #00838f;
+  animation: spin 1s linear infinite;
 }
 
-.download-button {
-  background-color: #00bcd4;
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ===== DOWNLOAD BUTTON ===== */
+.download-container {
+  position: sticky;
+  bottom: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+}
+
+.download-btn {
+  background-color: #00838f;
   color: white;
   border: none;
-  border-radius: 5px;
-  padding: 12px 24px;
-  font-size: 1rem;
+  border-radius: 4px;
+  padding: 8px 16px;
+  font-size: 0.85rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
 }
 
-.download-button:hover {
-  background-color: #0097a7;
+.download-btn:hover {
+  background-color: #006064;
 }
 
-/* Responsive Design */
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
 @media (max-width: 768px) {
-  .dropzone {
-    padding: 20px;
+  .app-container {
+    padding: 10px;
   }
 
-  .dropzone p {
-    font-size: 1rem;
-  }
-
-  .file-preview h3 {
+  .header {
     font-size: 1.3rem;
   }
 
-  .file-preview p {
-    font-size: 0.9rem;
+  .dropzone {
+    padding: 15px;
   }
 
-  .preview-table table {
-    font-size: 0.7rem; /* Further reduce text size on mobile */
+  table {
+    font-size: 0.7rem;
   }
 
-  .preview-table th,
-  .preview-table td {
-    padding: 4px; /* Further reduce cell padding on mobile */
+  th, td {
+    padding: 5px;
   }
+}
+.floating-download-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 15px 25px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
 
-  .processing {
-    font-size: 1rem;
-  }
-
-  .download-button {
-    padding: 10px 20px;
-    font-size: 0.9rem;
-  }
+.floating-download-button:hover {
+  background-color: #45a049;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
