@@ -1,20 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.css'; // Import HomePage-specific styles
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [audio, setAudio] = useState(null);
+
+  // Load the audio file when component mounts
+  useEffect(() => {
+    const clickSound = new Audio(process.env.PUBLIC_URL + '/click-sound.mp3');
+    setAudio(clickSound);
+
+    // Cleanup function to revoke object URL
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.src = '';
+      }
+    };
+  }, []);
 
   // Function to play click sound
   const playClickSound = () => {
-    const audio = new Audio('/click-sound.mp3'); // Ensure this file exists in the public folder
-    audio.play();
+    if (audio) {
+      audio.currentTime = 0; // Rewind to start if already playing
+      audio.play().catch(error => {
+        console.warn('Audio playback failed:', error);
+        // Continue with navigation even if audio fails
+      });
+    }
   };
 
   // Function to handle button click
   const handleButtonClick = (path) => {
     playClickSound();
-    navigate(path); // Navigate to the specified path
+    // Small delay to allow sound to play before navigation
+    setTimeout(() => navigate(path), 100);
   };
 
   // Button data
@@ -50,6 +71,9 @@ const HomePage = () => {
             key={button.id}
             className="card-button"
             onClick={() => handleButtonClick(button.path)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleButtonClick(button.path)}
           >
             <h3>{button.title}</h3>
           </div>
