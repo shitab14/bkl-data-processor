@@ -1,16 +1,16 @@
 /* ===== BASE STYLES ===== */
-.app-container {
+.app {
   font-family: 'Segoe UI', Roboto, sans-serif;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 15px;
+  padding: 20px;
   font-size: 14px;
 }
 
-.header {
+.page-title {
   color: #00796b;
-  font-size: 1.5rem;
-  margin-bottom: 20px;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
   text-align: center;
 }
 
@@ -18,10 +18,10 @@
 .dropzone {
   border: 2px dashed #00838f;
   border-radius: 6px;
-  padding: 20px;
+  padding: 25px;
   text-align: center;
   cursor: pointer;
-  margin: 15px 0;
+  margin: 20px 0;
   background-color: #e0f7fa;
   transition: all 0.2s;
 }
@@ -34,34 +34,45 @@
 .dropzone p {
   margin: 0;
   color: #00695c;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 /* ===== ERROR MESSAGE ===== */
 .error-message {
   color: #c62828;
   background-color: #ffebee;
-  padding: 8px 12px;
+  padding: 10px 15px;
   border-radius: 4px;
-  margin: 10px 0;
-  font-size: 0.85rem;
+  margin: 15px 0;
+  font-size: 0.9rem;
   border-left: 3px solid #c62828;
+  text-align: center;
 }
 
-/* ===== FILE INFO ===== */
-.file-info {
-  font-size: 0.85rem;
+/* ===== FILE PREVIEW ===== */
+.file-preview {
+  padding: 0 40px;
+  margin: 20px 0;
+  font-size: 0.9rem;
   color: #455a64;
-  margin: 10px 0;
-  padding: 8px;
   background-color: #eceff1;
-  border-radius: 4px;
+  border-radius: 6px;
+  padding: 15px 40px;
+}
+
+.file-preview h3 {
+  margin-top: 0;
+  color: #00838f;
 }
 
 /* ===== TABLE STYLES ===== */
-.table-wrapper {
+.preview-table {
+  margin: 25px 0;
+  padding: 0 40px;
+}
+
+.table-container {
   overflow-x: auto;
-  margin: 15px 0;
   border: 1px solid #cfd8dc;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1);
@@ -70,30 +81,23 @@
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 }
 
 th {
   background-color: #00838f;
   color: white;
-  padding: 8px 10px;
+  padding: 10px 12px;
   text-align: center;
   position: sticky;
   top: 0;
   font-weight: 500;
-  white-space: nowrap;
 }
 
 td {
-  padding: 6px 8px;
+  padding: 8px 10px;
   border: 1px solid #e0e0e0;
   text-align: center;
-  white-space: nowrap;
-}
-
-.compact-cell {
-  padding: 4px 6px;
-  font-size: 0.7rem;
 }
 
 tr:nth-child(even) {
@@ -102,91 +106,49 @@ tr:nth-child(even) {
 
 /* ===== PROCESSING INDICATOR ===== */
 .processing {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 15px 0;
+  text-align: center;
+  margin: 20px 0;
   color: #00838f;
-  font-size: 0.85rem;
-}
-
-.spinner {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  border: 2px solid rgba(0, 131, 143, 0.3);
-  border-radius: 50%;
-  border-top-color: #00838f;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
+  font-size: 1rem;
 }
 
 /* ===== DOWNLOAD BUTTON ===== */
-.download-container {
-  position: sticky;
-  bottom: 20px;
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 10px;
-  border-radius: 6px;
-  box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+.download-section {
+  text-align: center;
+  margin: 30px 0;
 }
 
-.download-btn {
+.download-button {
   background-color: #00838f;
   color: white;
   border: none;
   border-radius: 4px;
-  padding: 8px 16px;
-  font-size: 0.85rem;
+  padding: 12px 24px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s;
-  display: flex;
-  align-items: center;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.download-btn:hover {
+.download-button:hover {
   background-color: #006064;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-/* ===== RESPONSIVE ADJUSTMENTS ===== */
-@media (max-width: 768px) {
-  .app-container {
-    padding: 10px;
-  }
-
-  .header {
-    font-size: 1.3rem;
-  }
-
-  .dropzone {
-    padding: 15px;
-  }
-
-  table {
-    font-size: 0.7rem;
-  }
-
-  th, td {
-    padding: 5px;
-  }
-}
+/* ===== FLOATING DOWNLOAD BUTTON ===== */
 .floating-download-button {
   position: fixed;
   bottom: 30px;
-  right: 30px;
-  padding: 15px 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
   background-color: #4CAF50;
   color: white;
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: bold;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   z-index: 1000;
@@ -195,6 +157,41 @@ tr:nth-child(even) {
 
 .floating-download-button:hover {
   background-color: #45a049;
-  transform: translateY(-3px);
+  transform: translateX(-50%) translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== RESPONSIVE ADJUSTMENTS ===== */
+@media (max-width: 768px) {
+  .app {
+    padding: 15px;
+  }
+
+  .page-title {
+    font-size: 1.5rem;
+  }
+
+  .file-preview,
+  .preview-table {
+    padding: 0 20px;
+  }
+
+  .dropzone {
+    padding: 20px;
+  }
+
+  table {
+    font-size: 0.7rem;
+  }
+
+  th, td {
+    padding: 6px 8px;
+  }
+
+  .floating-download-button {
+    width: 90%;
+    max-width: 300px;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
 }
